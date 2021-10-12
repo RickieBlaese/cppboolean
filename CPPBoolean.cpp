@@ -56,7 +56,7 @@ int main(int argc, const char** argv) {
 		exit(-1);
 	}
 
-	char* contents;
+	char* contents = (char*)"";
 	ifile.read(contents, fsz(argv[1]));
 	ifile.close();
 	
