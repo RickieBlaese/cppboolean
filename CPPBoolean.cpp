@@ -10,7 +10,7 @@
 // copied from https://stackoverflow.com/a/5840160
 // edited for better functionality
 // inline for no fucking reason at all
-inline std::ifstream::pos_type fsz(const char*filename){std::ifstream in(filename,std::ifstream::ate|std::ifstream::binary);return in.tellg();}
+inline std::ifstream::pos_type fsz(const char* filename) { std::ifstream in(filename, std::ifstream::ate | std::ifstream::binary); return in.tellg(); }
 
 // copied from https://stackoverflow.com/a/2390938
 bool is_empty(std::ifstream& pFile) {
@@ -18,10 +18,10 @@ bool is_empty(std::ifstream& pFile) {
 	return
 		pFile
 		.
-		
+
 		peek
 		(
-		) 
+		)
 		==
 		std::
 		ifstream::
@@ -29,10 +29,96 @@ bool is_empty(std::ifstream& pFile) {
 		::
 		eof
 		(
-		
+
 		)
 		;
 }
+
+struct barray {
+	bool d[1];
+
+	barray() {
+		d[0] = false;
+	}
+	
+	barray(const bool& value) {
+		d[0] = value;
+	}
+
+	bool operator[](unsigned int index) {
+		return d[index];
+	}
+
+	operator bool() const {
+		return d[0];
+	}
+};
+
+struct ecbool {
+	bool* d;
+
+	ecbool() {
+		d = new bool[1073741824];
+		for (int i = 0; i < 1073741824; i++) {
+			d[i] = false;
+		}
+	}
+
+	ecbool(const bool& value) {
+		d = new bool[1073741824];
+		for (int i = 0; i < 1073741824; i++) {
+			d[i] = value;
+		}
+	}
+
+	~ecbool() {
+		delete[] d;
+	}
+
+	operator bool() const {
+		int fvalue = 0;
+		for (int i = 0; i < 1073741824; i++) {
+			fvalue += d[i];
+		}
+		return bool(fvalue / 536870912);
+	}
+};
+
+struct lbool {
+	bool* d;
+
+	lbool() {
+		d = new bool[1048576];
+		for (int i = 0; i < 1048576; i++) {
+			d[i] = false;
+		}
+	}
+
+	lbool(const bool& value) {
+		for (int i = 0; i < 1048576; i++) {
+			d[i] = value;
+		}
+	}
+
+	~lbool() {
+		delete[] d;
+	}
+
+	void operator=(const bool& other) {
+		for (int i = 0; i < 1048576; i++) {
+			d[i] = other;
+		}
+	}
+
+	operator bool() const {
+		bool fvalue = false;
+		for (int i = 0; i < 1048576; i++) {
+			fvalue = fvalue || d[i];
+		}
+		return fvalue;
+	}
+
+};
 
 // what???
 // who needs a main function anyways
@@ -56,12 +142,12 @@ int main(int argc, const char** argv) {
 		return -1;
 	}
 
-	char* contents = (char*)"";
-	ifile.read(contents, fsz(argv[1]));
-	ifile.close();
-	
 
-	// done
-	THE_BEST_DATA_TYPE done = true;
+	// read contents here or summ
+
+	ecbool test = true;
+
+	printf("%i", int(bool(test)));
+
 	return 0;
 }
