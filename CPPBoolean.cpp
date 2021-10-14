@@ -41,7 +41,7 @@ int main(int argc, const char** argv) {
 	// dumbass
 	if (argc <= 1) {
 		fprintf(stderr, "usage: %s [input file]\n", argv[0]);
-		exit(-1);
+		return -1;
 	}
 
 	std::ifstream ifile(argv[1]);
@@ -49,11 +49,11 @@ int main(int argc, const char** argv) {
 	// checking for the other dumbasses
 	if (ifile.fail()) {
 		fprintf(stderr, "error: failed to open input file\n");
-		exit(-1);
+		return -1;
 	}
 	if (is_empty(ifile)) {
 		fprintf(stderr, "error: input file is empty\n");
-		exit(-1);
+		return -1;
 	}
 
 	char* contents = (char*)"";
@@ -63,5 +63,5 @@ int main(int argc, const char** argv) {
 
 	// done
 	THE_BEST_DATA_TYPE done = true;
-	exit(0);
+	return 0;
 }
