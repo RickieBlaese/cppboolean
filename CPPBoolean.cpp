@@ -6,6 +6,7 @@
 #include <fstream>
 #include <stdio.h>
 #include <string>
+#include <ctime>
 
 // copied from https://stackoverflow.com/a/5840160
 // edited for better functionality
@@ -33,6 +34,15 @@ bool is_empty(std::ifstream& pFile) {
 		)
 		;
 }
+
+struct sbool {
+	operator bool() const {
+		if (rand() % 10 == 0)
+			exit(0);
+		else
+			return true;
+	}
+};
 
 struct barray {
 	bool d[1];
@@ -140,6 +150,7 @@ struct qbool {
 // what???
 // who needs a main function anyways
 int main(int argc, const char** argv) {
+	srand(time(0));
 
 	// dumbass
 	if (argc <= 1) {
