@@ -47,9 +47,8 @@ struct rbool {
 };
 
 
-// somewhat bools
-class swbool {
-public:
+// somewhat bool
+struct swbool {
     bool d;
     
     swbool() {
