@@ -120,6 +120,23 @@ struct lbool {
 
 };
 
+struct qbool {
+	bool a;
+	bool b;
+	
+	//implement tralse and fue!!! (to be implemented)
+	
+	qbool() {
+		a = false;
+		b = false;
+	}
+	
+	qbool(const bool& avalue, const bool& bvalue) {
+		a = avalue;
+		b = bvalue;
+	}
+};
+
 // what???
 // who needs a main function anyways
 int main(int argc, const char** argv) {
@@ -144,6 +161,7 @@ int main(int argc, const char** argv) {
 
 
 	// read contents here or summ
+	//sex
 
 	ecbool test = true;
 
