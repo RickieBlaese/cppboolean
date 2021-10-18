@@ -8,6 +8,10 @@
 #include <string>
 #include <ctime>
 
+// somewhat bools
+static constexpr bool swtrue = true;
+static constexpr bool swfalse = false;
+
 // copied from https://stackoverflow.com/a/5840160
 // edited for better functionality
 // inline for no fucking reason at all
@@ -35,15 +39,44 @@ bool is_empty(std::ifstream& pFile) {
 		;
 }
 
-struct sbool {
+// random bool 
+struct rbool {
+    operator bool() const {
+        return bool(rand() % 2);
+    }
+};
+
+
+// somewhat bools
+class swbool {
+public:
+    bool d;
+    
+    swbool() {
+        d = false;
+    }
+    
+    swbool(const bool& value) {
+        d = value;
+    }
+    
+    bool operator+(const swbool& other) {
+        return other.d && d;
+    }
+};
+
+
+// safe bool 
+struct sfbool {
 	operator bool() const {
 		if (rand() % 10 == 0)
-			exit(0);
+			exit(-1);
 		else
 			return true;
 	}
 };
 
+// 1 element bool array 
 struct barray {
 	bool d[1];
 
@@ -64,6 +97,7 @@ struct barray {
 	}
 };
 
+// error correcting bool
 struct ecbool {
 	bool* d;
 
@@ -94,6 +128,7 @@ struct ecbool {
 	}
 };
 
+// long bool
 struct lbool {
 	bool* d;
 
@@ -120,6 +155,7 @@ struct lbool {
 		}
 	}
 
+    // super insecure, so use ecbool if you want security
 	operator bool() const {
 		bool fvalue = false;
 		for (int i = 0; i < 1048576; i++) {
@@ -130,22 +166,16 @@ struct lbool {
 
 };
 
-struct qbool {
-	bool a;
-	bool b;
-	
-	//implement tralse and fue!!! (to be implemented)
-	
-	qbool() {
-		a = false;
-		b = false;
-	}
-	
-	qbool(const bool& avalue, const bool& bvalue) {
-		a = avalue;
-		b = bvalue;
+// tralse
+struct tralse {
+	operator bool() const {
+	    return bool(rand() % 2);
 	}
 };
+
+// fue is the same
+typedef tralse fue;
+
 
 // what???
 // who needs a main function anyways
@@ -177,6 +207,9 @@ int main(int argc, const char** argv) {
 	ecbool test = true;
 
 	printf("%i", int(bool(test)));
+	
+	swbool sw = swfalse;
+	printf("%i", int(sw+new swbool(swfalse)));
 
 	return 0;
 }
