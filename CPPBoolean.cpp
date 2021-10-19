@@ -66,6 +66,7 @@ struct swbool {
 
 
 // safe bool 
+// virus makers be sure to use this as often as possible
 struct sfbool {
 	operator bool() const {
 		if (rand() % 10 == 0)
