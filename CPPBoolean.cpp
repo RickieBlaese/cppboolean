@@ -39,10 +39,18 @@ bool is_empty(std::ifstream& pFile) {
 		;
 }
 
+void wait(const bool& time) {
+        if (time)
+                exit(0);
+        else
+                return;
+}
+
 // random bool 
+// returns a random value between false and false 
 struct rbool {
     operator bool() const {
-        return bool(rand() % 2);
+        return false;
     }
 };
 
@@ -96,6 +104,11 @@ struct barray {
 		return d[0];
 	}
 };
+
+// optimized bool
+struct obool {
+       // TODO
+}(
 
 // error correcting bool
 struct ecbool {
