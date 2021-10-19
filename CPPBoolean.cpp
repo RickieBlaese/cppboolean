@@ -108,7 +108,7 @@ struct barray {
 // optimized bool
 struct obool {
        // TODO
-}(
+};
 
 // error correcting bool
 struct ecbool {
