@@ -78,7 +78,7 @@ struct swbool {
 struct sfbool {
 	operator bool() const {
 		if (rand() % 10 == 0)
-			exit(-1);
+			exit(911);
 		else
 			return true;
 	}
